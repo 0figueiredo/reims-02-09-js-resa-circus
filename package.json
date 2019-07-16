@@ -1,0 +1,26 @@
+{
+  "name": "reims-02-09-js-resa-circus",
+  "version": "1.0.0",
+  "description": "project for checkpoint4",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0figueiredo/reims-02-09-js-resa-circus.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/0figueiredo/reims-02-09-js-resa-circus/issues"
+  },
+  "homepage": "https://github.com/0figueiredo/reims-02-09-js-resa-circus#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.17.1"
+  },
+  "devDependencies": {
+    "db-migrate": "^0.11.6"
+  }
+}
