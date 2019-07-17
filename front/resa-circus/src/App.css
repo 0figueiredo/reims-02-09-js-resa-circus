@@ -1,0 +1,25 @@
+.App {
+  text-align: center;
+}
+
+h5 {
+  color: white;
+  background-color: #343a40;
+  padding: 2vh;  
+}
+.select-bar{
+  width: 40vw;
+  height: 5vh;
+  font-size: 1.15rem;
+  border-radius: 0.2rem;
+  outline: none;
+}
+.card{
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  width: 18rem;
+}
+.row{
+  display: flex;
+  justify-content: space-around;
+}
