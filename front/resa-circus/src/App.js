@@ -15,15 +15,10 @@ const mapStateToProps = state => ({
 
 class App extends Component {
   componentDidMount() {
-    const { dispatch, region } = this.props;
+    const { dispatch } = this.props;
     axios.get('http://localhost:8000/regions')
       .then(response => dispatch ({type:'DISPLAY_ALL_REGION', listOfRegion: response.data}))
-      .catch(err => console.log(err));
-    if (region !== 0) {
-      axios.get(`http://localhost:8000/regions/${region}/circus`)
-        .then(response => dispatch ({type: 'STORE_CIRCUS_BY_REGION_ID', circusByRegionId: response.data}))
-        .catch(err => console.log(err));
-    }
+      .catch(err => console.log(err));     
   }
 
 

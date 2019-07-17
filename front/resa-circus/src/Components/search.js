@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import '../App.css';
 
 const mapStateToProps = state => ({
@@ -8,11 +9,20 @@ const mapStateToProps = state => ({
     circusByRegionId: state.circusByRegionId,
   })
 
-const Search = ({ listOfRegion, dispatch,  }) => {
+const Search = ({ listOfRegion, dispatch, region, circusByRegionId  }) => {
   return ( 
     <div>
       <h5>Rechercher un cirque</h5>
-      <select id="region-select" className="select-bar" onChange={e => dispatch({type:'SAVE_REGION', region:(e.target.value)})}>
+      <select id="region-select" 
+              className="select-bar" 
+              onChange={e => dispatch({
+                type:'SAVE_REGION', 
+                region:(e.target.value), 
+                circusByRegionId: axios.get(`http://localhost:8000/regions/${region}/circus`)
+                    .then(response => dispatch({type: 'STORE_CIRCUS_BY_REGION_ID', circusByRegionId:response.data}))
+                  }) 
+              }
+              >
           <option value="">
               Choisissez une région
         </option>
@@ -28,22 +38,15 @@ const Search = ({ listOfRegion, dispatch,  }) => {
       </select>
       <div className="container">
         <div className="row">
-          <div className="card">
-            <img src="https://www.toutelarussie.com/userfiles/images/russia/theatres/moscow/yury_nikulins_circus.jpg" className="card-img-top" alt="..."/>
+          {circusByRegionId.map(circus => (<div className="card" key={circus.id}>
+            <img src="https://www.seine-maritime-tourisme.com/fr/ambassadeur-76/images/lettre%20ambassadeurs/3-Elbeuf-cirque-1A-OT-Rouen-JF.jpg" className="card-img-top" alt="..."/>
           <div className="card-body">
-            <h6 className="card-title">Circus</h6>
-              <p className="card-text">Cirque de la Famille ...</p>
+            <h6 className="card-title">{circus.name}</h6>
+              <p className="card-text">{circus.presentation}</p>
+              <p>Adresse : {circus.adress}</p>
               <button>Reserver</button>
           </div>
-          </div>
-          <div className="card">
-            <img src="https://www.toutelarussie.com/userfiles/images/russia/theatres/moscow/great_moscow_circus.jpg" className="card-img-top" alt="..."/>
-            <div className="card-body">
-            <h6 className="card-title">Circus</h6>
-              <p className="card-text">Cirque de la Famille ...</p>
-              <button>Reserver</button>
-            </div>
-          </div>
+          </div>))}
         </div>  
       </div>
     </div>
